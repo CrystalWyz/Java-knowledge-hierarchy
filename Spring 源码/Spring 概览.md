@@ -8,35 +8,35 @@ Spring是什么？
 
 基本架构：
 
-![Spring 整体结构](/Users/wangnanxiang/Java-knowledge-hierarchy/Spring 源码/igames/Spring 整体结构.png)
+![Spring 整体结构](igames/Spring 整体结构.png)
 
 
 
 类加载宏观流程：
 
-<img src="/Users/wangnanxiang/Java-knowledge-hierarchy/Spring 源码/igames/类加载宏观流程.png" alt="类加载宏观流程" style="zoom:80%;" />
+![类加载宏观流程](igames/类加载宏观流程.png)
 
 Bean生命周期：
 
-![Bean生命周期](/Users/wangnanxiang/Java-knowledge-hierarchy/Spring 源码/igames/Bean生命周期.png)
+![Bean生命周期](igames/Bean生命周期.png)
 
 容器是什么？
 
-​	![spring容器解析](/Users/wangnanxiang/Java-knowledge-hierarchy/Spring 源码/igames/spring容器解析.png)
+​	![spring容器解析](igames/spring容器解析.png)
 
 
 
 Spring 容器对象：
 
 	1. 普通对象：即自定义对象。
- 	2. 容器对象：内置对象，Spring运行所需的对象。
+	2. 容器对象：内置对象，Spring运行所需的对象。
 
 
 
 创建对象两大步骤区分 实例化 与 初始化：
 
 	1. 实例化： 即在内存中开辟一块空间，对象的属性值都是默认值。
- 	2. 初始化：给对象的属性赋值，包括填充属性与执行初始化方法(init-method)
+	2. 初始化：给对象的属性赋值，包括填充属性与执行初始化方法(init-method)
 
 
 
