@@ -170,6 +170,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	static {
 		// Eagerly load the ContextClosedEvent class to avoid weird classloader issues
 		// on application shutdown in WebLogic 8.1. (Reported by Dustin Woods.)
+		// 优先加载上下文关闭事件来防止奇怪的类加载问题在应用程序关闭的时候
 		ContextClosedEvent.class.getName();
 	}
 
@@ -178,6 +179,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	protected final Log logger = LogFactory.getLog(getClass());
 
 	/** Unique id for this context, if any. */
+	// 创建上下文唯一标识
 	private String id = ObjectUtils.identityToString(this);
 
 	/** Display name. */
@@ -242,8 +244,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 	/**
 	 * Create a new AbstractApplicationContext with no parent.
+	 * 创建一个无父类的AbstractApplicationContext对象
 	 */
 	public AbstractApplicationContext() {
+		// 创建资源模式处理器
 		this.resourcePatternResolver = getResourcePatternResolver();
 	}
 
@@ -553,7 +557,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
-			// 获取容器对象 DefaultListableBeanFactory 同时加载xml配置文件的属性到当前工厂中，形成一个个BeanDefinition
+			// 创建容器对象 DefaultListableBeanFactory 同时加载xml配置文件的属性到当前工厂中，形成一个个BeanDefinition
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
@@ -631,10 +635,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 */
 	protected void prepareRefresh() {
 		// Switch to active.
+		// 设置容器启动时间
 		this.startupDate = System.currentTimeMillis();
+		// 容器关闭标志位
 		this.closed.set(false);
+		// 容器激活标志位
 		this.active.set(true);
 
+		//日志记录
 		if (logger.isDebugEnabled()) {
 			if (logger.isTraceEnabled()) {
 				logger.trace("Refreshing " + this);
@@ -650,16 +658,18 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
-		// 获取环境变量，验证属性资源
+		// 创建并获取环境变量，验证需要的属性文件是否都已经放入环境中
 		getEnvironment().validateRequiredProperties();
 
 		// Store pre-refresh ApplicationListeners...
+		// 判断刷新前的应用程序监听器集合是否为空，如果为空，则将监听器添加到此集合中
 		// 存储预刷新的应用程序监听器(扩展使用) Spring Boot使用 13个
 		if (this.earlyApplicationListeners == null) {
 			this.earlyApplicationListeners = new LinkedHashSet<>(this.applicationListeners);
 		}
 		else {
 			// Reset local application listeners to pre-refresh state.
+			// 如果不等于空，则清空集合对象
 			this.applicationListeners.clear();
 			this.applicationListeners.addAll(this.earlyApplicationListeners);
 		}
