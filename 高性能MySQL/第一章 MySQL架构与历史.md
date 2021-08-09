@@ -6,7 +6,7 @@
 
 3. MySQL架构图：
 
-   ![](/Users/wangnanxiang/Java-knowledge-hierarchy/高性能MySQL/images/MySQL架构.png)
+   ![](images/MySQL架构.png)
 
 4. 最上层的服务并不是MySQL独有的，大多数基于网络的客户端/服务器的工具或者服务都有类似的架构。第二层架构大多数MySQL的核心服务功能都在这一层，所有跨存储引擎的功能都在这一层实现。第三层包含存储引擎。存储引擎负责MySQL中数据的存储和提取。和GNU/Linux下的各种文件系统一样，每个存储引擎都有它的优势和劣势。
 
